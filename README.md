@@ -312,6 +312,9 @@ Este projeto está licenciado sob a **Licença MIT** — veja o arquivo [`LICENS
   <a href="https://github.com/danilo-humberto">
     <img src="https://img.shields.io/badge/GitHub-@danilo--humberto-181717?logo=github&logoColor=white" alt="GitHub de Danilo Humberto" />
   </a>
+  <a href="https://www.linkedin.com/in/danilo-humberto-28a771215/">
+    <img src="https://img.shields.io/badge/LinkedIn-Danilo_Humberto-0A66C2" alt="LinkedIn de Danilo Humberto" />
+  </a>
   <br />
   <br />
   <sub>Desenvolvido com foco em estudos consistentes, ativos e sem atalhos mentais.</sub>
