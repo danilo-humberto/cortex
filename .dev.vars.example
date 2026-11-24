@@ -1,0 +1,10 @@
+# Copie este arquivo para .dev.vars para rodar localmente com `npm run dev`
+# Em produção na Cloudflare, configure cada variável com `npx wrangler secret put <NOME>`
+
+DATABASE_URL="postgresql://usuario:senha@ep-seu-host.us-east-2.aws.neon.tech/neondb?sslmode=require"
+GEMINI_API_KEY="sua-chave-do-google-ai-studio"
+APP_ACCESS_KEY="sua-senha-pessoal-forte"
+SESSION_SECRET="uma-string-aleatoria-com-pelo-menos-32-caracteres"
+
+# Opcional: sobrescreve o modelo padrão (gemini-4-hydrogen)
+# GEMINI_MODEL="gemini-4-hydrogen"

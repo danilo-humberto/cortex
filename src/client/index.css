@@ -1,0 +1,50 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    -webkit-tap-highlight-color: transparent;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    font-family:
+      "Inter",
+      system-ui,
+      -apple-system,
+      BlinkMacSystemFont,
+      "Segoe UI",
+      Roboto,
+      sans-serif;
+    overscroll-behavior-y: contain;
+  }
+
+  code,
+  pre {
+    font-family:
+      "JetBrains Mono",
+      "Fira Code",
+      ui-monospace,
+      SFMono-Regular,
+      Menlo,
+      Monaco,
+      Consolas,
+      monospace;
+  }
+}
+
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.safe-pb {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+.safe-pt {
+  padding-top: env(safe-area-inset-top, 0px);
+}

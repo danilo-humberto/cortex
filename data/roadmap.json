@@ -1,0 +1,1151 @@
+{
+  "version": "1.1.0",
+  "title": "Trilha Júnior para Pleno (JS/TS & Fundamentos)",
+  "modules": [
+    {
+      "order": 1,
+      "title": "JavaScript & TypeScript por baixo dos panos",
+      "goal": "Parar de apenas aceitar código da IA e entender como o motor da linguagem executa o código na memória e na fila de execução.",
+      "topics": [
+        {
+          "id": "m1-t1",
+          "order": 1,
+          "title": "Call Stack e Event Loop",
+          "summary": "Como o JavaScript executa código single-thread usando Call Stack, Web/Node APIs, fila de microtasks e fila de macrotasks.",
+          "keyConcepts": ["Call Stack", "Event Loop", "Microtask Queue (Promises)", "Macrotask Queue (setTimeout)", "Bloqueio do Event Loop"],
+          "studyItems": [
+            {
+              "id": "m1-t1-i1",
+              "title": "Call Stack (Pilha de Chamadas)",
+              "prompt": "Como o motor JS empilha e desempilha funções durante a execução síncrona em single-thread."
+            },
+            {
+              "id": "m1-t1-i2",
+              "title": "Web APIs e libuv no Node.js",
+              "prompt": "Quem realmente executa timers, fetch e I/O fora da thread principal enquanto o código segue rodando."
+            },
+            {
+              "id": "m1-t1-i3",
+              "title": "Microtask Queue vs. Macrotask Queue",
+              "prompt": "A regra de ouro de drenagem completa das microtasks (Promises, await, queueMicrotask) antes de cada macrotask (setTimeout, I/O)."
+            },
+            {
+              "id": "m1-t1-i4",
+              "title": "As 6 fases do Event Loop no Node.js",
+              "prompt": "Timers, Pending Callbacks, Idle/Prepare, Poll, Check (setImmediate) e Close Callbacks."
+            },
+            {
+              "id": "m1-t1-i5",
+              "title": "process.nextTick() vs. queueMicrotask() e Starvation",
+              "prompt": "Prioridade absoluta do nextTick no Node.js e como chamadas recursivas travam o Event Loop (Event Loop Starvation)."
+            },
+            {
+              "id": "m1-t1-i6",
+              "title": "Bloqueio do Event Loop (Event Loop Blocking)",
+              "prompt": "Como cálculos pesados na CPU ou regex mal escrita travam todos os usuários simultâneos em um servidor Node.js."
+            }
+          ],
+          "suggestedPractice": "Prever no papel a ordem exata de saída de um código misturando console.log, setTimeout e Promise.resolve antes de rodar."
+        },
+        {
+          "id": "m1-t2",
+          "order": 2,
+          "title": "Assincronismo na prática",
+          "summary": "Uso correto de Promises, async/await, concorrência controlada e tratamento de falhas assíncronas.",
+          "keyConcepts": ["Estados de uma Promise", "async/await", "Promise.all vs Promise.allSettled vs Promise.race", "Unhandled Promise Rejection"],
+          "studyItems": [
+            {
+              "id": "m1-t2-i1",
+              "title": "Estados internos e imutabilidade de uma Promise",
+              "prompt": "Ciclo pending, fulfilled e rejected, e por que uma Promise finalizada nunca mais muda de estado."
+            },
+            {
+              "id": "m1-t2-i2",
+              "title": "Como async/await funciona por baixo dos panos",
+              "prompt": "Açúcar sintático sobre Promises e como o código após o await é agendado na fila de microtasks."
+            },
+            {
+              "id": "m1-t2-i3",
+              "title": "Promise.all, allSettled, race e any",
+              "prompt": "Diferenças de comportamento quando uma ou todas as Promises falham e quando escolher cada combinador."
+            },
+            {
+              "id": "m1-t2-i4",
+              "title": "Concorrência controlada (Concurrency Limiting)",
+              "prompt": "Por que disparar milhares de Promises simultâneas com Promise.all derruba bancos/APIs e como limitar em lotes."
+            },
+            {
+              "id": "m1-t2-i5",
+              "title": "Cancelamento com AbortController e Promise.withResolvers()",
+              "prompt": "Como cancelar fetch/tarefas com AbortSignal.timeout() e controlar resolução externa com Promise.withResolvers()."
+            },
+            {
+              "id": "m1-t2-i6",
+              "title": "Unhandled Promise Rejection",
+              "prompt": "Por que rejeições sem tratamento derrubam o processo no Node.js moderno e como tratar erros assíncronos corretamente."
+            }
+          ],
+          "suggestedPractice": "Refatorar um loop com await sequencial lento para execução concorrente com tratamento individual de falhas."
+        },
+        {
+          "id": "m1-t3",
+          "order": 3,
+          "title": "Escopo, Closures e Contexto (this)",
+          "summary": "Como funções capturam variáveis do escopo léxico, como o valor de this é definido e como evitar vazamentos de memória.",
+          "keyConcepts": ["Escopo Léxico", "Closure", "Valor de this (call/apply/bind/arrow)", "Memory Leaks comuns"],
+          "studyItems": [
+            {
+              "id": "m1-t3-i1",
+              "title": "Escopo Léxico e Scope Chain",
+              "prompt": "Como o JS resolve variáveis com base em onde o código foi escrito, não onde a função foi chamada."
+            },
+            {
+              "id": "m1-t3-i2",
+              "title": "Hoisting e Temporal Dead Zone (TDZ)",
+              "prompt": "Diferenças reais de declaração, escopo e inicialização entre var, let e const."
+            },
+            {
+              "id": "m1-t3-i3",
+              "title": "Closures na prática",
+              "prompt": "Como uma função interna retém referências ao escopo externo mesmo após a função pai terminar (ex: debounce, estado privado)."
+            },
+            {
+              "id": "m1-t3-i4",
+              "title": "Regras do this (call, apply, bind e Arrow Functions)",
+              "prompt": "Como o valor de this muda conforme a forma de invocação e por que arrow functions herdam o this léxico."
+            },
+            {
+              "id": "m1-t3-i5",
+              "title": "Memory Leaks comuns em JS e Node.js",
+              "prompt": "Closures segurando objetos grandes, event listeners não removidos, timers esquecidos e caches sem limite."
+            },
+            {
+              "id": "m1-t3-i6",
+              "title": "WeakMap e WeakSet com Garbage Collection",
+              "prompt": "Como referências fracas permitem associar metadados/cache a objetos sem impedir a coleta de lixo da memória."
+            }
+          ],
+          "suggestedPractice": "Implementar manualmente uma função de debounce ou contador privado usando closure sem olhar cola."
+        },
+        {
+          "id": "m1-t4",
+          "order": 4,
+          "title": "Imutabilidade e Referência vs Valor",
+          "summary": "Diferença entre tipos primitivos e objetos na memória, cópia rasa vs cópia profunda e bugs de mutação inesperada.",
+          "keyConcepts": ["Passagem por valor vs referência", "Shallow Copy vs Deep Copy", "structuredClone", "Efeitos colaterais"],
+          "studyItems": [
+            {
+              "id": "m1-t4-i1",
+              "title": "Stack vs. Heap (Valor vs. Referência)",
+              "prompt": "Como tipos primitivos são copiados por valor enquanto objetos e arrays compartilham referência na memória."
+            },
+            {
+              "id": "m1-t4-i2",
+              "title": "Shallow Copy vs. Deep Copy",
+              "prompt": "Por que spread ({ ...obj }) e Object.assign() só copiam o primeiro nível e geram bugs em objetos aninhados."
+            },
+            {
+              "id": "m1-t4-i3",
+              "title": "structuredClone() vs. JSON.parse(JSON.stringify())",
+              "prompt": "Vantagens do structuredClone nativo (Date, Map, Set, referências circulares) e limitações (funções)."
+            },
+            {
+              "id": "m1-t4-i4",
+              "title": "Métodos modernos não-mutáveis de Array (ES2023+)",
+              "prompt": "Uso de .toSorted(), .toReversed(), .toSpliced() e .with() no lugar dos métodos antigos que mutam o array original."
+            },
+            {
+              "id": "m1-t4-i5",
+              "title": "Object.freeze() vs. readonly no TypeScript",
+              "prompt": "Diferença entre imutabilidade em compile-time (TS) e runtime (Object.freeze, que é raso)."
+            },
+            {
+              "id": "m1-t4-i6",
+              "title": "Funções puras e Efeitos Colaterais",
+              "prompt": "Por que evitar mutar argumentos recebidos por parâmetro torna o código previsível e fácil de testar."
+            }
+          ],
+          "suggestedPractice": "Caçar um bug em que alterar um item de um carrinho de compras altera acidentalmente o catálogo original."
+        },
+        {
+          "id": "m1-t5",
+          "order": 5,
+          "title": "TypeScript além do básico (Generics e Utility Types)",
+          "summary": "Criar tipos reutilizáveis e seguros usando Generics e tipos utilitários nativos do TypeScript.",
+          "keyConcepts": ["Generics (<T>)", "Constraints (extends)", "Pick, Omit, Partial, Required, Record", "ReturnType"],
+          "studyItems": [
+            {
+              "id": "m1-t5-i1",
+              "title": "Generics (<T>) sem over-engineering",
+              "prompt": "Como relacionar entrada e saída mantendo tipagem forte, e quando NÃO criar um Generic desnecessário."
+            },
+            {
+              "id": "m1-t5-i2",
+              "title": "Constraints com extends e operador keyof",
+              "prompt": "Como restringir tipos genéricos (T extends Entity) e garantir chaves válidas de um objeto (K extends keyof T)."
+            },
+            {
+              "id": "m1-t5-i3",
+              "title": "Utility Types essenciais",
+              "prompt": "Uso prático de Partial, Required, Pick, Omit, Record, Readonly, ReturnType, Parameters e Awaited."
+            },
+            {
+              "id": "m1-t5-i4",
+              "title": "Operador satisfies",
+              "prompt": "Validar se um valor respeita um contrato sem perder a inferência estreita dos valores literais."
+            },
+            {
+              "id": "m1-t5-i5",
+              "title": "Mapped Types e Indexed Access Types",
+              "prompt": "Derivar novos tipos a partir de tipos existentes (T['prop']) evitando duplicação manual."
+            },
+            {
+              "id": "m1-t5-i6",
+              "title": "Configurações rígidas do tsconfig.json",
+              "prompt": "Impacto real de strict: true e noUncheckedIndexedAccess: true na prevenção de bugs de undefined."
+            }
+          ],
+          "suggestedPractice": "Tipar uma função genérica de resposta de API e um helper de atualização parcial de entidade sem usar any."
+        },
+        {
+          "id": "m1-t6",
+          "order": 6,
+          "title": "Type Narrowing e Segurança de Tipos",
+          "summary": "Refinar tipos de união com segurança usando type guards, discriminated unions e strict mode.",
+          "keyConcepts": ["Discriminated Unions", "Type Guards (in, typeof, instanceof, is)", "unknown vs any", "Exhaustiveness checking (never)"],
+          "studyItems": [
+            {
+              "id": "m1-t6-i1",
+              "title": "Discriminated Unions (Uniões Discriminadas)",
+              "prompt": "Usar um campo discriminador literal (ex: status) para eliminar estados impossíveis em requisições e domínios."
+            },
+            {
+              "id": "m1-t6-i2",
+              "title": "Type Guards nativos (typeof, instanceof, in, Array.isArray)",
+              "prompt": "Como o compilador refina tipos em cada branch condicional de forma segura."
+            },
+            {
+              "id": "m1-t6-i3",
+              "title": "Custom Type Predicates (is) e Assertion Functions",
+              "prompt": "Escrever funções validadoras próprias que ensinam o TypeScript a estreitar o tipo."
+            },
+            {
+              "id": "m1-t6-i4",
+              "title": "unknown vs. any",
+              "prompt": "Por que any desliga a checagem de tipos e se espalha, enquanto unknown força validação antes do uso."
+            },
+            {
+              "id": "m1-t6-i5",
+              "title": "Exhaustiveness Checking com never",
+              "prompt": "Garantir em tempo de compilação que todos os casos de uma união foram tratados no switch/if."
+            },
+            {
+              "id": "m1-t6-i6",
+              "title": "Perigo dos Type Assertions (as Tipo e !)",
+              "prompt": "Por que mentir para o compilador com type casts gera bugs silenciosos em produção."
+            }
+          ],
+          "suggestedPractice": "Modelar estados de uma requisição (idle, loading, success, error) com discriminated union e tratar todos os casos."
+        }
+      ]
+    },
+    {
+      "order": 2,
+      "title": "Estruturas de Dados, Algoritmos e Performance",
+      "goal": "Bater o olho num código e saber na hora se ele vai escalar ou travar quando o volume de dados crescer.",
+      "topics": [
+        {
+          "id": "m2-t1",
+          "order": 7,
+          "title": "Notação Big O (Tempo e Espaço)",
+          "summary": "Medir o crescimento do custo de tempo e memória de um algoritmo conforme a entrada aumenta.",
+          "keyConcepts": ["O(1)", "O(log n)", "O(n)", "O(n log n)", "O(n²)", "Complexidade de espaço"],
+          "studyItems": [
+            {
+              "id": "m2-t1-i1",
+              "title": "Ordens de crescimento essenciais",
+              "prompt": "Comparar O(1), O(log n), O(n), O(n log n), O(n²) e O(2^n) quando o volume de dados cresce."
+            },
+            {
+              "id": "m2-t1-i2",
+              "title": "Complexidade de Tempo vs. Espaço",
+              "prompt": "O trade-off clássico de usar mais memória auxiliar (ex: Map) para derrubar o tempo de execução."
+            },
+            {
+              "id": "m2-t1-i3",
+              "title": "Regras de simplificação do Big O",
+              "prompt": "Descartar constantes e termos menores, mas manter entradas distintas separadas (O(n + m) vs O(n * m))."
+            },
+            {
+              "id": "m2-t1-i4",
+              "title": "Custo escondido dos métodos de Array no JS",
+              "prompt": "Entender por que .find()/.includes() dentro de .map()/.filter() cria algoritmos O(n²) disfarçados."
+            },
+            {
+              "id": "m2-t1-i5",
+              "title": "Melhor caso, pior caso e tempo amortizado",
+              "prompt": "Diferença entre pior caso e custo amortizado (ex: redimensionamento de arrays dinâmicos no push)."
+            }
+          ],
+          "suggestedPractice": "Analisar 3 trechos de código com loops aninhados, .find() dentro de .map(), e calcular a complexidade de cada um."
+        },
+        {
+          "id": "m2-t2",
+          "order": 8,
+          "title": "Arrays vs Hash Maps (Map, Set e Objetos)",
+          "summary": "Escolher a estrutura certa para buscas rápidas, remoção de duplicatas e indexação em memória.",
+          "keyConcepts": ["Busca linear O(n) vs Hash O(1)", "Map vs Object", "Set para unicidade", "Colisões de hash (conceito)"],
+          "studyItems": [
+            {
+              "id": "m2-t2-i1",
+              "title": "Como funciona uma Hash Table por baixo dos panos",
+              "prompt": "Função de hash, buckets e como colisões de hash são tratadas na memória."
+            },
+            {
+              "id": "m2-t2-i2",
+              "title": "Map vs. Objeto literal ({})",
+              "prompt": "Quando Map vence: chaves de qualquer tipo, .size em O(1), ordem garantida, adições/remoções e sem colisão de prototype."
+            },
+            {
+              "id": "m2-t2-i3",
+              "title": "Set e novos métodos de conjunto (ES2025)",
+              "prompt": "Busca O(1) com .has(), remoção de duplicatas e operações .union(), .intersection() e .difference()."
+            },
+            {
+              "id": "m2-t2-i4",
+              "title": "Indexação em memória (Lookup Table)",
+              "prompt": "Converter um array em Map por ID para cruzar duas listas grandes em O(n + m) em vez de O(n * m)."
+            },
+            {
+              "id": "m2-t2-i5",
+              "title": "Padrão Frequency Counter (Contador de Frequência)",
+              "prompt": "Usar Map para contar ocorrências, agrupar itens ou detectar duplicatas em uma única passagem O(n)."
+            }
+          ],
+          "suggestedPractice": "Otimizar uma função O(n²) que cruza duas listas de 50 mil registros para O(n) usando Map."
+        },
+        {
+          "id": "m2-t3",
+          "order": 9,
+          "title": "Pilhas (Stacks) e Filas (Queues)",
+          "summary": "Estruturas LIFO e FIFO e suas aplicações reais em histórico, desfazer/refazer, parsers e filas de tarefas.",
+          "keyConcepts": ["LIFO (Stack)", "FIFO (Queue)", "Custo de Array.shift() em listas grandes", "Casos de uso reais"],
+          "studyItems": [
+            {
+              "id": "m2-t3-i1",
+              "title": "Pilha (Stack — LIFO)",
+              "prompt": "Last In, First Out: push, pop e peek em O(1) e aplicações como undo/redo, histórico e Call Stack."
+            },
+            {
+              "id": "m2-t3-i2",
+              "title": "Fila (Queue — FIFO)",
+              "prompt": "First In, First Out: enqueue e dequeue para agendamento de tarefas, processamento em ordem e BFS."
+            },
+            {
+              "id": "m2-t3-i3",
+              "title": "A armadilha do Array.prototype.shift()",
+              "prompt": "Por que shift() custa O(n) ao reindexar todo o array e como fazer uma fila O(1) com ponteiros ou Linked List."
+            },
+            {
+              "id": "m2-t3-i4",
+              "title": "Deque e Ring Buffer (conceitos)",
+              "prompt": "Filas de duas pontas e buffers circulares de tamanho fixo para cenários de alta vazão."
+            },
+            {
+              "id": "m2-t3-i5",
+              "title": "Casos de uso práticos em entrevistas e produção",
+              "prompt": "Validação de parênteses/chaves/tags balanceadas, avaliação de expressões e controle de fluxo."
+            }
+          ],
+          "suggestedPractice": "Escrever um validador de parênteses/chaves balanceados usando uma pilha na mão."
+        },
+        {
+          "id": "m2-t4",
+          "order": 10,
+          "title": "Recursão e Árvores básicas",
+          "summary": "Pensar recursivamente com caso base seguro e percorrer estruturas hierárquicas (menus, comentários, DOM).",
+          "keyConcepts": ["Caso base e passo recursivo", "Stack Overflow", "Árvores e nós", "Busca em profundidade (DFS) vs largura (BFS)"],
+          "studyItems": [
+            {
+              "id": "m2-t4-i1",
+              "title": "Caso Base e Passo Recursivo",
+              "prompt": "Como garantir que toda função recursiva converge para uma condição de parada segura."
+            },
+            {
+              "id": "m2-t4-i2",
+              "title": "Stack Overflow e conversão para iterativo",
+              "prompt": "Por que recursão profunda estoura a Call Stack e como reescrever usando uma pilha explícita."
+            },
+            {
+              "id": "m2-t4-i3",
+              "title": "Vocabulário e modelagem de Árvores",
+              "prompt": "Raiz, nó, filho, folha, profundidade e altura aplicados a menus, comentários aninhados e DOM."
+            },
+            {
+              "id": "m2-t4-i4",
+              "title": "DFS (Busca em Profundidade)",
+              "prompt": "Explorar cada ramo até o fundo com recursão ou pilha (pré-ordem, em-ordem e pós-ordem)."
+            },
+            {
+              "id": "m2-t4-i5",
+              "title": "BFS (Busca em Largura)",
+              "prompt": "Percorrer a árvore nível por nível usando Fila (Queue) e por que encontra o menor caminho em passos."
+            },
+            {
+              "id": "m2-t4-i6",
+              "title": "Memoization em recursão",
+              "prompt": "Armazenar resultados intermediários em cache (Map) para evitar recomputar os mesmos subproblemas."
+            }
+          ],
+          "suggestedPractice": "Escrever uma função que soma valores ou busca um ID dentro de uma árvore de categorias aninhadas."
+        },
+        {
+          "id": "m2-t5",
+          "order": 11,
+          "title": "Algoritmos de Busca e Ordenação essenciais",
+          "summary": "Como funciona a busca binária em dados ordenados e as pegadinhas do Array.prototype.sort no JavaScript.",
+          "keyConcepts": ["Busca Binária O(log n)", "Ordenação numérica vs lexicográfica no JS", "Mutação do .sort() vs .toSorted()", "Estabilidade de ordenação"],
+          "studyItems": [
+            {
+              "id": "m2-t5-i1",
+              "title": "Busca Binária em O(log n)",
+              "prompt": "Pré-requisito de ordenação, cálculo seguro do índice do meio e variações (primeira/última ocorrência)."
+            },
+            {
+              "id": "m2-t5-i2",
+              "title": "Pegadinha lexicográfica do .sort() no JS",
+              "prompt": "Por que [10, 2, 1].sort() retorna [1, 10, 2] e como escrever comparadores para números, datas e strings com localeCompare."
+            },
+            {
+              "id": "m2-t5-i3",
+              "title": "Mutação do .sort() vs. .toSorted()",
+              "prompt": "Como evitar bugs de mutação inesperada usando o método imutável .toSorted()."
+            },
+            {
+              "id": "m2-t5-i4",
+              "title": "Estabilidade de ordenação (Stable Sort / Timsort)",
+              "prompt": "O que significa preservar a ordem relativa de itens empatados e como o V8 garante isso desde o ES2019."
+            },
+            {
+              "id": "m2-t5-i5",
+              "title": "Intuição de Merge Sort e Quick Sort",
+              "prompt": "Ideia de dividir para conquistar e por que ordenação por comparação custa O(n log n)."
+            }
+          ],
+          "suggestedPractice": "Implementar busca binária na mão sem IA e corrigir um bug de ordenação numérica/datas em JS."
+        }
+      ]
+    },
+    {
+      "order": 3,
+      "title": "Engenharia Web, HTTP e APIs Robustas",
+      "goal": "Dominar a comunicação entre cliente e servidor sem depender apenas de mágica de framework.",
+      "topics": [
+        {
+          "id": "m3-t1",
+          "order": 12,
+          "title": "Ciclo completo de uma requisição Web",
+          "summary": "Tudo o que acontece desde digitar uma URL até a resposta chegar: DNS, TCP, TLS/HTTPS e HTTP.",
+          "keyConcepts": ["DNS", "TCP Handshake", "TLS/HTTPS", "Latência e Round-trip"],
+          "studyItems": [
+            {
+              "id": "m3-t1-i1",
+              "title": "Resolução de DNS e registros",
+              "prompt": "Cache local/browser, servidor recursivo, Root/TLD/Authoritative, tipos A/AAAA/CNAME/TXT e TTL."
+            },
+            {
+              "id": "m3-t1-i2",
+              "title": "TCP 3-Way Handshake",
+              "prompt": "Troca SYN -> SYN-ACK -> ACK para estabelecer conexão confiável antes de enviar dados HTTP."
+            },
+            {
+              "id": "m3-t1-i3",
+              "title": "TLS 1.3 e HTTPS",
+              "prompt": "Certificados digitais, negociação de chaves, criptografia em trânsito e redução de round-trips no TLS 1.3."
+            },
+            {
+              "id": "m3-t1-i4",
+              "title": "HTTP/1.1 vs. HTTP/2 vs. HTTP/3 (QUIC)",
+              "prompt": "Head-of-Line Blocking, multiplexação, compressão de headers e transporte sobre UDP/QUIC no HTTP/3."
+            },
+            {
+              "id": "m3-t1-i5",
+              "title": "Caminho no servidor (CDN, Reverse Proxy e Keep-Alive)",
+              "prompt": "Papel de CDN, Load Balancer, middlewares, latência vs. vazão e reaproveitamento de conexões."
+            }
+          ],
+          "suggestedPractice": "Desenhar de memória o fluxo completo de uma requisição do navegador até o servidor e de volta."
+        },
+        {
+          "id": "m3-t2",
+          "order": 13,
+          "title": "Anatomia do HTTP (Métodos, Headers e Status)",
+          "summary": "Uso semântico correto de verbos HTTP, cabeçalhos essenciais e códigos de status para APIs claras.",
+          "keyConcepts": ["GET/POST/PUT/PATCH/DELETE", "Status 200/201/204/400/401/403/404/409/422/429/500", "Content-Type, Authorization, Cache-Control"],
+          "studyItems": [
+            {
+              "id": "m3-t2-i1",
+              "title": "Verbos HTTP: segurança e idempotência",
+              "prompt": "Diferença semântica entre GET, POST, PUT, PATCH, DELETE, HEAD e OPTIONS (preflight)."
+            },
+            {
+              "id": "m3-t2-i2",
+              "title": "Status Codes 2xx e 3xx",
+              "prompt": "Quando retornar 200, 201, 202 (assíncrono), 204 (sem corpo), 301/302 e 304 (cache)."
+            },
+            {
+              "id": "m3-t2-i3",
+              "title": "Status Codes 4xx e 5xx",
+              "prompt": "Diferenças cruciais entre 400 vs 422, 401 vs 403, 404, 409, 429 e 500/502/503/504."
+            },
+            {
+              "id": "m3-t2-i4",
+              "title": "Headers essenciais de requisição e resposta",
+              "prompt": "Content-Type, Accept, Authorization, Cache-Control, ETag, X-Request-Id e Retry-After."
+            },
+            {
+              "id": "m3-t2-i5",
+              "title": "Padronização de erros com RFC 9457 (Problem Details)",
+              "prompt": "Formato application/problem+json (type, title, status, detail, instance) substituindo payloads ad-hoc."
+            }
+          ],
+          "suggestedPractice": "Revisar um conjunto de rotas mal projetadas e corrigir verbos e códigos de status de cada cenário."
+        },
+        {
+          "id": "m3-t3",
+          "order": 14,
+          "title": "Design de APIs REST e Idempotência",
+          "summary": "Modelagem de recursos, paginação eficiente e garantia de idempotência em operações críticas.",
+          "keyConcepts": ["Recursos vs Ações", "Idempotência (Idempotency-Key)", "Paginação Offset vs Cursor", "Versionamento"],
+          "studyItems": [
+            {
+              "id": "m3-t3-i1",
+              "title": "Modelagem orientada a recursos",
+              "prompt": "URLs com substantivos no plural, hierarquia limpa e quando modelar ações de negócio de forma pragmática."
+            },
+            {
+              "id": "m3-t3-i2",
+              "title": "Idempotência com Idempotency-Key",
+              "prompt": "Evitar cobranças ou pedidos duplicados em retries usando chave UUID, lock/unique constraint e replay de resposta."
+            },
+            {
+              "id": "m3-t3-i3",
+              "title": "Paginação Offset vs. Cursor (Keyset)",
+              "prompt": "Por que OFFSET alto degrada no banco e sofre com itens pulados/duplicados, e como Cursor mantém O(1)."
+            },
+            {
+              "id": "m3-t3-i4",
+              "title": "Filtros, ordenação e envelopes consistentes",
+              "prompt": "Estruturar respostas paginadas previsíveis (data, nextCursor, hasMore) e filtros via query params."
+            },
+            {
+              "id": "m3-t3-i5",
+              "title": "Versionamento e Backward Compatibility",
+              "prompt": "Estratégias (/v1 vs header) e quais mudanças quebram clientes existentes vs. mudanças aditivas seguras."
+            }
+          ],
+          "suggestedPractice": "Projetar o contrato de uma API de pagamentos/pedidos evitando cobrança duplicada em retries."
+        },
+        {
+          "id": "m3-t4",
+          "order": 15,
+          "title": "Validação de Entrada e Contratos",
+          "summary": "Validar e sanitizar dados na borda do sistema para proteger o domínio e o banco de dados.",
+          "keyConcepts": ["Validação em runtime vs tipagem em compile-time", "Schema validation (Zod)", "Mensagens de erro claras", "Fail-fast"],
+          "studyItems": [
+            {
+              "id": "m3-t4-i1",
+              "title": "Compile-time (TS) vs. Runtime Validation",
+              "prompt": "Por que tipos TypeScript desaparecem em produção e como validar fronteiras externas (HTTP, webhooks, env)."
+            },
+            {
+              "id": "m3-t4-i2",
+              "title": "Zod (v4) e Standard Schema",
+              "prompt": "Schemas, coerção, .transform(), .refine()/.superRefine(), .parse() vs .safeParse() e z.infer."
+            },
+            {
+              "id": "m3-t4-i3",
+              "title": "Princípio Parse, don't validate",
+              "prompt": "Converter entrada desconhecida logo na borda em dados fortemente tipados e confiáveis pro domínio."
+            },
+            {
+              "id": "m3-t4-i4",
+              "title": "Fail-fast e proteção contra Mass Assignment",
+              "prompt": "Rejeitar payloads inválidos cedo e descartar campos extras não permitidos (ex: role: admin)."
+            },
+            {
+              "id": "m3-t4-i5",
+              "title": "Mensagens de erro úteis sem vazar internos",
+              "prompt": "Retornar erros claros por campo ao cliente mantendo detalhes de banco e stack traces escondidos."
+            }
+          ],
+          "suggestedPractice": "Criar um schema Zod com regras reais (campos obrigatórios, formatos, limites) e testar entradas maliciosas."
+        },
+        {
+          "id": "m3-t5",
+          "order": 16,
+          "title": "Autenticação e Autorização",
+          "summary": "Diferença entre provar identidade e ter permissão; trade-offs entre JWT e sessões com cookies.",
+          "keyConcepts": ["AuthN vs AuthZ", "JWT (Access vs Refresh Token)", "Cookies HttpOnly/Secure/SameSite", "RBAC"],
+          "studyItems": [
+            {
+              "id": "m3-t5-i1",
+              "title": "AuthN (Autenticação) vs. AuthZ (Autorização)",
+              "prompt": "Separar claramente quem o usuário é do que ele tem permissão de fazer no sistema."
+            },
+            {
+              "id": "m3-t5-i2",
+              "title": "Sessões Stateful (Cookie + Store) vs. JWT Stateless",
+              "prompt": "Trade-offs reais de escalabilidade, tamanho de payload e o desafio da revogação imediata de JWT."
+            },
+            {
+              "id": "m3-t5-i3",
+              "title": "Access Token + Refresh Token Rotation",
+              "prompt": "Tokens de vida curta, rotação segura com detecção de reuso e como lidar com race conditions de 401 simultâneos."
+            },
+            {
+              "id": "m3-t5-i4",
+              "title": "Flags de segurança em Cookies vs. localStorage",
+              "prompt": "Papel de HttpOnly, Secure e SameSite (Lax/Strict/None) e por que localStorage é vulnerável a XSS."
+            },
+            {
+              "id": "m3-t5-i5",
+              "title": "RBAC, ABAC e prevenção de IDOR / BOLA",
+              "prompt": "Controle por papel/atributos e checagem obrigatória de posse do recurso (ownership check) no banco."
+            },
+            {
+              "id": "m3-t5-i6",
+              "title": "Noções de OAuth 2.0, OIDC e PKCE",
+              "prompt": "Como funciona login delegado (Google/GitHub) sem expor a senha do usuário à sua aplicação."
+            }
+          ],
+          "suggestedPractice": "Encontrar falhas de autorização (como IDOR — acessar recurso de outro usuário trocando o ID) num código de exemplo."
+        },
+        {
+          "id": "m3-t6",
+          "order": 17,
+          "title": "Segurança Web Essencial (OWASP Top 10)",
+          "summary": "Proteger aplicações contra os ataques mais comuns no dia a dia web.",
+          "keyConcepts": ["SQL Injection", "XSS", "CSRF", "CORS", "Rate Limiting", "Hash seguro de senhas (bcrypt/argon2)"],
+          "studyItems": [
+            {
+              "id": "m3-t6-i1",
+              "title": "SQL Injection e Queries Parametrizadas",
+              "prompt": "Como entradas concatenadas manipulam comandos SQL e como Prepared Statements neutralizam o ataque."
+            },
+            {
+              "id": "m3-t6-i2",
+              "title": "XSS (Cross-Site Scripting) e CSP",
+              "prompt": "Stored, Reflected e DOM-based XSS; escape de saída, sanitização e Content Security Policy."
+            },
+            {
+              "id": "m3-t6-i3",
+              "title": "CSRF (Cross-Site Request Forgery)",
+              "prompt": "Como sites maliciosos abusam de cookies automáticos e como defender com SameSite, Origin e tokens."
+            },
+            {
+              "id": "m3-t6-i4",
+              "title": "CORS e Preflight (OPTIONS)",
+              "prompt": "Por que CORS é política do navegador (não substitui auth), como funciona OPTIONS sem credenciais e regras de origem."
+            },
+            {
+              "id": "m3-t6-i5",
+              "title": "Hash seguro de senhas (Argon2id / bcrypt) e Rate Limiting",
+              "prompt": "Por que MD5/SHA são inseguros para senhas, uso de salt + algoritmos lentos e proteção contra força bruta."
+            },
+            {
+              "id": "m3-t6-i6",
+              "title": "Destaques do OWASP Top 10 (2025)",
+              "prompt": "Broken Access Control (A01), Software Supply Chain Failures (A03) e Mishandling of Exceptional Conditions (A10)."
+            }
+          ],
+          "suggestedPractice": "Fazer code review de segurança num endpoint vulnerável e listar todas as brechas encontradas."
+        }
+      ]
+    },
+    {
+      "order": 4,
+      "title": "Banco de Dados de Verdade (PostgreSQL/SQL + Cache)",
+      "goal": "Deixar de depender cegamente de ORM e saber modelar, consultar e otimizar bancos de dados.",
+      "topics": [
+        {
+          "id": "m4-t1",
+          "order": 18,
+          "title": "Modelagem Relacional e Normalização",
+          "summary": "Estruturar tabelas, chaves primárias/estrangeiras, relacionamentos 1:N e N:N e saber quando desnormalizar.",
+          "keyConcepts": ["PK e FK", "1:1, 1:N e N:N (tabela pivô)", "1FN, 2FN, 3FN", "Constraints (NOT NULL, UNIQUE, CHECK)"],
+          "studyItems": [
+            {
+              "id": "m4-t1-i1",
+              "title": "PKs, FKs e escolha de IDs (BIGINT vs UUID v4 vs UUID v7)",
+              "prompt": "Impacto de UUID v4 aleatório em índices B-Tree vs UUID v7 ordenável, e regras ON DELETE."
+            },
+            {
+              "id": "m4-t1-i2",
+              "title": "Relacionamentos 1:1, 1:N e N:N",
+              "prompt": "Onde colocar a chave estrangeira e como modelar tabelas pivô com integridade referencial."
+            },
+            {
+              "id": "m4-t1-i3",
+              "title": "Formas Normais na prática (1FN, 2FN e 3FN)",
+              "prompt": "Evitar colunas multivaloradas, dependências parciais e redundâncias que geram anomalias de atualização."
+            },
+            {
+              "id": "m4-t1-i4",
+              "title": "Quando desnormalizar de propósito",
+              "prompt": "Casos legítimos como congelar o preço pago num item de pedido ou contadores materializados."
+            },
+            {
+              "id": "m4-t1-i5",
+              "title": "Constraints e tipos corretos no PostgreSQL",
+              "prompt": "NOT NULL, UNIQUE, CHECK, TIMESTAMPTZ (sempre com fuso) e NUMERIC/centavos para valores monetários."
+            }
+          ],
+          "suggestedPractice": "Modelar no papel/SQL as tabelas de um sistema de reservas ou e-commerce com integridade referencial."
+        },
+        {
+          "id": "m4-t2",
+          "order": 19,
+          "title": "SQL na mão: JOINs e Agregações",
+          "summary": "Escrever consultas relacionais limpas sem depender de ORM ou IA para cada cruzamento de dados.",
+          "keyConcepts": ["INNER JOIN vs LEFT JOIN", "GROUP BY e HAVING", "WHERE vs HAVING", "CTEs (WITH)"],
+          "studyItems": [
+            {
+              "id": "m4-t2-i1",
+              "title": "Ordem lógica de execução de uma query SQL",
+              "prompt": "FROM -> JOIN -> WHERE -> GROUP BY -> HAVING -> SELECT -> DISTINCT -> ORDER BY -> LIMIT."
+            },
+            {
+              "id": "m4-t2-i2",
+              "title": "INNER JOIN, LEFT JOIN, FULL JOIN e anti-join",
+              "prompt": "Quando usar cada JOIN, como achar registros sem correspondência (LEFT JOIN + IS NULL) e evitar CROSS JOIN acidental."
+            },
+            {
+              "id": "m4-t2-i3",
+              "title": "GROUP BY, funções de agregação e WHERE vs. HAVING",
+              "prompt": "Filtrar linhas antes de agrupar (WHERE) vs. filtrar grupos já agregados (HAVING)."
+            },
+            {
+              "id": "m4-t2-i4",
+              "title": "CTEs (WITH) e comportamento no PostgreSQL 12+",
+              "prompt": "Organizar queries complexas em blocos legíveis e entender inline automático vs MATERIALIZED / NOT MATERIALIZED."
+            },
+            {
+              "id": "m4-t2-i5",
+              "title": "EXISTS vs. IN e noções de Window Functions",
+              "prompt": "Short-circuit do EXISTS (e pegadinha de NULL no NOT IN) + uso prático de ROW_NUMBER() OVER (PARTITION BY ...)."
+            }
+          ],
+          "suggestedPractice": "Escrever na mão 3 queries SQL com JOIN e agregação (ex: top 5 clientes por valor gasto no mês)."
+        },
+        {
+          "id": "m4-t3",
+          "order": 20,
+          "title": "Índices e Planos de Execução (EXPLAIN ANALYZE)",
+          "summary": "Entender como índices B-Tree aceleram leituras, o custo na escrita e como ler um EXPLAIN ANALYZE.",
+          "keyConcepts": ["Seq Scan vs Index Scan", "B-Tree Index", "Índice composto (ordem das colunas)", "Custo de índices em excesso"],
+          "studyItems": [
+            {
+              "id": "m4-t3-i1",
+              "title": "Funcionamento de índices B-Tree no PostgreSQL",
+              "prompt": "Busca O(log n) para igualdade, intervalos, ORDER BY e prefixo LIKE 'abc%' (mas não '%abc%')."
+            },
+            {
+              "id": "m4-t3-i2",
+              "title": "Tipos de Scan no plano de execução",
+              "prompt": "Diferenças entre Seq Scan, Index Scan, Index Only Scan e Bitmap Index Scan."
+            },
+            {
+              "id": "m4-t3-i3",
+              "title": "Como ler EXPLAIN (ANALYZE, BUFFERS)",
+              "prompt": "Comparar rows estimadas vs actual rows, shared hit (RAM) vs shared read (disco) e algoritmos de join."
+            },
+            {
+              "id": "m4-t3-i4",
+              "title": "Índice Composto e ordem das colunas",
+              "prompt": "Leftmost Prefix Rule e regra Equality first, Range last na definição das colunas."
+            },
+            {
+              "id": "m4-t3-i5",
+              "title": "Partial Index, Covering Index (INCLUDE) e GIN",
+              "prompt": "Indexar só registros ativos com WHERE, evitar idas à tabela com INCLUDE e indexar JSONB com GIN."
+            },
+            {
+              "id": "m4-t3-i6",
+              "title": "Armadilhas e custo de índices em excesso",
+              "prompt": "Funções em colunas que inutilizam o índice e impacto de muitos índices na velocidade de escrita (INSERT/UPDATE)."
+            }
+          ],
+          "suggestedPractice": "Analisar um plano de execução lento e decidir qual índice composto resolve sem prejudicar escritas."
+        },
+        {
+          "id": "m4-t4",
+          "order": 21,
+          "title": "O Problema N+1 em ORMs",
+          "summary": "Identificar quando o ORM dispara dezenas ou centenas de queries escondidas num loop e corrigir.",
+          "keyConcepts": ["Lazy loading vs Eager loading", "Detecção via logs de SQL", "Correção com JOIN ou WHERE IN"],
+          "studyItems": [
+            {
+              "id": "m4-t4-i1",
+              "title": "Anatomia do problema N+1",
+              "prompt": "Como 1 query pai + N queries filhas dentro de um loop destroem a latência e saturam o pool de conexões."
+            },
+            {
+              "id": "m4-t4-i2",
+              "title": "Lazy Loading vs. Eager Loading",
+              "prompt": "Carregar relações explicitamente (JOIN, WHERE IN, include/with) no lugar de buscas escondidas sob demanda."
+            },
+            {
+              "id": "m4-t4-i3",
+              "title": "Detecção prática de N+1",
+              "prompt": "Ativar logs de SQL do ORM em desenvolvimento e contar queries por requisição HTTP."
+            },
+            {
+              "id": "m4-t4-i4",
+              "title": "JOIN único vs. 2 queries com WHERE IN",
+              "prompt": "Evitar explosão cartesiana ao carregar múltiplas coleções 1:N simultaneamente."
+            },
+            {
+              "id": "m4-t4-i5",
+              "title": "Padrão DataLoader (Batching)",
+              "prompt": "Como agrupar buscas individuais concorrentes em um único lote WHERE id IN (...)."
+            }
+          ],
+          "suggestedPractice": "Caçar e corrigir um problema N+1 em um trecho de código usando ORM."
+        },
+        {
+          "id": "m4-t5",
+          "order": 22,
+          "title": "Transações, ACID e Concorrência",
+          "summary": "Garantir consistência em operações múltiplas e evitar condições de corrida (race conditions).",
+          "keyConcepts": ["BEGIN / COMMIT / ROLLBACK", "ACID", "Race Condition", "Lock otimista vs pessimista"],
+          "studyItems": [
+            {
+              "id": "m4-t5-i1",
+              "title": "Blocos transacionais (BEGIN, COMMIT, ROLLBACK)",
+              "prompt": "Agrupar múltiplas operações como uma unidade indivisível com reversão segura em caso de falha."
+            },
+            {
+              "id": "m4-t5-i2",
+              "title": "Propriedades ACID e WAL",
+              "prompt": "Atomicidade, Consistência, Isolamento e Durabilidade (e papel do Write-Ahead Log no Postgres)."
+            },
+            {
+              "id": "m4-t5-i3",
+              "title": "Níveis de Isolamento e MVCC no PostgreSQL",
+              "prompt": "Read Committed, Repeatable Read (Snapshot Isolation) e Serializable contra anomalias de leitura e escrita."
+            },
+            {
+              "id": "m4-t5-i4",
+              "title": "Race Conditions (Check-then-Act) e Update Atômico",
+              "prompt": "Por que ler o estoque antes de atualizar permite estoque negativo e como UPDATE ... WHERE estoque >= 1 resolve."
+            },
+            {
+              "id": "m4-t5-i5",
+              "title": "Lock Pessimista (FOR UPDATE / SKIP LOCKED) vs. Otimista",
+              "prompt": "Quando travar linhas no banco (incluindo SKIP LOCKED para workers) vs. usar coluna de versão."
+            },
+            {
+              "id": "m4-t5-i6",
+              "title": "Deadlocks: causa, detecção e prevenção",
+              "prompt": "Como duas transações travam uma à outra, como o Postgres aborta uma delas e como prevenir ordenando locks."
+            }
+          ],
+          "suggestedPractice": "Analisar um bug de estoque negativo causado por duas compras simultâneas e propor a correção transacional."
+        },
+        {
+          "id": "m4-t6",
+          "order": 23,
+          "title": "Estratégias de Cache",
+          "summary": "Usar cache para reduzir carga no banco e latência, sabendo lidar com expiração e invalidação.",
+          "keyConcepts": ["Cache-Aside", "TTL (Time to Live)", "Invalidação de cache", "Cache HTTP vs Redis"],
+          "studyItems": [
+            {
+              "id": "m4-t6-i1",
+              "title": "Padrão Cache-Aside (e comparação com Write-Through)",
+              "prompt": "Fluxo de Cache Hit, Cache Miss, gravação com TTL e por que Cache-Aside é o mais usado com Redis."
+            },
+            {
+              "id": "m4-t6-i2",
+              "title": "TTL e Políticas de Eviction (LRU / LFU)",
+              "prompt": "Definir prazo de validade adequado e o que acontece quando a memória do Redis enche."
+            },
+            {
+              "id": "m4-t6-i3",
+              "title": "Invalidação de Cache na escrita",
+              "prompt": "Apagar/invalidar chaves ao atualizar o banco vs. aceitar consistência eventual com TTL curto."
+            },
+            {
+              "id": "m4-t6-i4",
+              "title": "Cache HTTP (Browser/CDN) vs. Cache de Aplicação (Redis)",
+              "prompt": "Uso de Cache-Control (max-age, s-maxage, stale-while-revalidate) e validação condicional com ETag (304)."
+            },
+            {
+              "id": "m4-t6-i5",
+              "title": "Cache Stampede, Penetration e Avalanche",
+              "prompt": "Defesas em produção: Single-Flight/Mutex Lock, cache de nulos/Bloom Filter e jitter aleatório no TTL."
+            }
+          ],
+          "suggestedPractice": "Desenhar o fluxo de leitura e escrita com cache para uma listagem de produtos muito acessada."
+        }
+      ]
+    },
+    {
+      "order": 5,
+      "title": "Mentalidade de Pleno (Debugging, Testes e Arquitetura)",
+      "goal": "Ganhar autonomia real em produção, investigar problemas com calma e pensar no sistema como um todo.",
+      "topics": [
+        {
+          "id": "m5-t1",
+          "order": 24,
+          "title": "Método Científico no Debugging",
+          "summary": "Investigar bugs de forma sistemática em vez de sair chutando alterações até parar de dar erro.",
+          "keyConcepts": ["Reprodução mínima", "Leitura de Stack Trace", "Hipótese e isolamento", "Uso de Debugger e Breakpoints"],
+          "studyItems": [
+            {
+              "id": "m5-t1-i1",
+              "title": "O Ciclo Científico no Debugging",
+              "prompt": "Observar sintoma -> reproduzir minimamente -> formular hipótese -> testar experimento -> corrigir causa raiz."
+            },
+            {
+              "id": "m5-t1-i2",
+              "title": "Leitura cirúrgica de Stack Trace e Source Maps",
+              "prompt": "Separar seu código de node_modules, seguir cadeia de Error.cause e mapear TS compilado com Source Maps."
+            },
+            {
+              "id": "m5-t1-i3",
+              "title": "Debugger, Conditional Breakpoints e Logpoints",
+              "prompt": "Inspecionar estado passo a passo (Step Over/Into/Out, Watch) sem sujar o código com console.log."
+            },
+            {
+              "id": "m5-t1-i4",
+              "title": "Busca binária de regressões com git bisect",
+              "prompt": "Isolar rapidamente o commit exato que introduziu um bug (inclusive automatizado com git bisect run)."
+            },
+            {
+              "id": "m5-t1-i5",
+              "title": "Isolamento de variáveis e Rubber Duck Debugging",
+              "prompt": "Como cortar o espaço do problema pela metade (rede, payload, banco) e expor premissas falsas."
+            }
+          ],
+          "suggestedPractice": "Debugar um código com 2 bugs sutis usando breakpoints/inspeção passo a passo sem alterar código no chute."
+        },
+        {
+          "id": "m5-t2",
+          "order": 25,
+          "title": "Tratamento de Erros Profissional",
+          "summary": "Separar erros operacionais esperados de bugs de programação e centralizar o tratamento de falhas.",
+          "keyConcepts": ["Erros operacionais vs programador", "Classes de erro customizadas", "Error middleware global", "Nunca engolir catch vazio"],
+          "studyItems": [
+            {
+              "id": "m5-t2-i1",
+              "title": "Erros Operacionais vs. Erros de Programador (Bugs)",
+              "prompt": "Tratar falhas esperadas (validação, timeout, 404) de forma diferente de bugs inesperados (TypeError, estado corrompido)."
+            },
+            {
+              "id": "m5-t2-i2",
+              "title": "Classes de erro customizadas e Error.cause",
+              "prompt": "Criar AppError/NotFoundError/ConflictError preservando o erro original com { cause: err }."
+            },
+            {
+              "id": "m5-t2-i3",
+              "title": "Error Handler / Middleware Global",
+              "prompt": "Centralizar formatação de respostas de erro e logging sem espalhar try/catch repetitivos em cada rota."
+            },
+            {
+              "id": "m5-t2-i4",
+              "title": "Anti-padrões fatais no catch",
+              "prompt": "Por que catch vazio, engolir stack trace e vazar mensagens internas do banco para o cliente são perigosos."
+            },
+            {
+              "id": "m5-t2-i5",
+              "title": "Padrão Result Type no TypeScript",
+              "prompt": "Quando retornar erros como valores tipados ({ ok: true, data } | { ok: false, error }) é mais seguro que throw."
+            }
+          ],
+          "suggestedPractice": "Refatorar um serviço cheio de try/catch repetidos e genéricos para um tratamento centralizado e limpo."
+        },
+        {
+          "id": "m5-t3",
+          "order": 26,
+          "title": "Testes Automatizados na prática",
+          "summary": "Escrever testes úteis que dão confiança para refatorar, cobrindo casos extremos e integrações.",
+          "keyConcepts": ["Testes Unitários vs Integração", "AAA (Arrange, Act, Assert)", "Mocks e Stubs sem exagero", "Edge cases (casos de borda)"],
+          "studyItems": [
+            {
+              "id": "m5-t3-i1",
+              "title": "Pirâmide vs. Troféu de Testes",
+              "prompt": "Equilíbrio entre análise estática, testes unitários, testes de integração de alto valor e E2E."
+            },
+            {
+              "id": "m5-t3-i2",
+              "title": "Padrão AAA (Arrange, Act, Assert)",
+              "prompt": "Estruturar testes legíveis, isolados e determinísticos que documentam a regra de negócio."
+            },
+            {
+              "id": "m5-t3-i3",
+              "title": "Test Doubles sem exagerar nos Mocks",
+              "prompt": "Diferença entre Stub, Spy, Mock e Fake, e por que excesso de mocks cria testes frágeis."
+            },
+            {
+              "id": "m5-t3-i4",
+              "title": "Testar comportamento vs. implementação",
+              "prompt": "Escrever testes que permitem refatorar a implementação interna sem quebrar a suíte à toa."
+            },
+            {
+              "id": "m5-t3-i5",
+              "title": "Casos de borda (Edge Cases) e limites",
+              "prompt": "Cobrir listas vazias, valores nulos, fronteiras exatas (>= vs >), negativos e datas/fusos."
+            },
+            {
+              "id": "m5-t3-i6",
+              "title": "Stack moderna: Vitest, Testcontainers e MSW",
+              "prompt": "Rodar testes de integração contra PostgreSQL real via Docker (Testcontainers) e interceptar HTTP com MSW."
+            }
+          ],
+          "suggestedPractice": "Escrever testes unitários cobrindo caminho feliz e 3 casos de borda para uma função de regra de negócio."
+        },
+        {
+          "id": "m5-t4",
+          "order": 27,
+          "title": "Observabilidade: Logs Estruturados e Métricas",
+          "summary": "Instrumentar o sistema para descobrir rapidamente o que aconteceu quando um erro estoura em produção.",
+          "keyConcepts": ["Logs estruturados (JSON)", "Níveis de log (info/warn/error)", "Correlation ID (Request ID)", "Métricas básicas (latência, taxa de erro)"],
+          "studyItems": [
+            {
+              "id": "m5-t4-i1",
+              "title": "Os 3 Pilares da Observabilidade",
+              "prompt": "Diferença prática entre Logs (eventos), Métricas (séries numéricas) e Traces (rastro distribuído)."
+            },
+            {
+              "id": "m5-t4-i2",
+              "title": "Logs Estruturados em JSON e Níveis de Log",
+              "prompt": "Uso de loggers como Pino com campos indexáveis e escolha correta entre debug, info, warn, error e fatal."
+            },
+            {
+              "id": "m5-t4-i3",
+              "title": "Correlation ID / Request ID com AsyncLocalStorage",
+              "prompt": "Propagar automaticamente o ID da requisição por toda a cadeia assíncrona no Node.js sem passar parâmetro manualmente."
+            },
+            {
+              "id": "m5-t4-i4",
+              "title": "Four Golden Signals e Percentis (p95 / p99)",
+              "prompt": "Medir latência, tráfego, erros e saturação — e por que a média esconde usuários sofrendo lentidão."
+            },
+            {
+              "id": "m5-t4-i5",
+              "title": "Segurança nos logs (Redaction de PII) e OpenTelemetry",
+              "prompt": "Nunca vazar senhas/tokens/CPF nos logs e visão geral do OpenTelemetry como padrão aberto."
+            }
+          ],
+          "suggestedPractice": "Substituir console.log soltos por logs estruturados com contexto útil (sem vazar dados sensíveis)."
+        },
+        {
+          "id": "m5-t5",
+          "order": 28,
+          "title": "Processamento Assíncrono e Filas de Mensageria",
+          "summary": "Desacoplar tarefas pesadas do fluxo síncrono usando filas em segundo plano e retentativas.",
+          "keyConcepts": ["Produtor e Consumidor", "Retry e Backoff exponencial", "Dead Letter Queue (DLQ)", "Quando usar fila vs síncrono"],
+          "studyItems": [
+            {
+              "id": "m5-t5-i1",
+              "title": "Síncrono (HTTP) vs. Assíncrono (Fila)",
+              "prompt": "Quando desacoplar tarefas lentas ou instáveis (e-mails, PDFs, webhooks) para responder rápido ao usuário."
+            },
+            {
+              "id": "m5-t5-i2",
+              "title": "Produtor, Broker/Fila e Consumidor (Worker)",
+              "prompt": "Papel de cada componente em ferramentas como BullMQ, RabbitMQ, SQS, Cloudflare Queues e Kafka."
+            },
+            {
+              "id": "m5-t5-i3",
+              "title": "Garantias de entrega e Consumidores Idempotentes",
+              "prompt": "At-most-once vs At-least-once (duplicatas acontecem!) e por que consumidores precisam ser idempotentes."
+            },
+            {
+              "id": "m5-t5-i4",
+              "title": "Retry com Exponential Backoff e Jitter",
+              "prompt": "Espaçar retentativas com variação aleatória para não causar tempestade de requisições num serviço em recuperação."
+            },
+            {
+              "id": "m5-t5-i5",
+              "title": "Dead Letter Queue (DLQ) e Transactional Outbox",
+              "prompt": "Isolar poison pills com alertas na DLQ e garantir atomicidade entre salvar no banco e publicar evento."
+            }
+          ],
+          "suggestedPractice": "Desenhar como tirar envio de e-mail e geração de relatório do tempo de resposta de uma rota de checkout."
+        },
+        {
+          "id": "m5-t6",
+          "order": 29,
+          "title": "Code Review e Qualidade de Código",
+          "summary": "Revisar código próprio e de colegas focando em legibilidade, bordas, impacto e manutenibilidade.",
+          "keyConcepts": ["PRs pequenos e descritivos", "Auto-revisão antes de abrir PR", "Feedback construtivo", "Identificar dívida técnica"],
+          "studyItems": [
+            {
+              "id": "m5-t6-i1",
+              "title": "Como abrir PRs pequenos, claros e auto-revisados",
+              "prompt": "Reduzir o tamanho do diff, explicar o porquê da mudança e revisar o próprio código antes de pedir review."
+            },
+            {
+              "id": "m5-t6-i2",
+              "title": "Checklist de revisão de Pleno",
+              "prompt": "Avaliar lógica, casos de borda, segurança (AuthZ/validação), performance (N+1/Big O) e observabilidade."
+            },
+            {
+              "id": "m5-t6-i3",
+              "title": "Feedback construtivo com Conventional Comments",
+              "prompt": "Usar prefixos claros (praise:, suggestion:, question:, nit:, issue:) separando bloqueadores de melhorias opcionais."
+            },
+            {
+              "id": "m5-t6-i4",
+              "title": "Automatizar estilo no CI e focar no que importa",
+              "prompt": "Delegar formatação e lint para ferramentas automatizadas para poupar energia humana no review."
+            },
+            {
+              "id": "m5-t6-i5",
+              "title": "Dívida Técnica consciente vs. desleixo",
+              "prompt": "Quando aceitar um atalho documentado por prazo de negócio e aplicar a Regra do Escoteiro."
+            }
+          ],
+          "suggestedPractice": "Fazer um code review completo de um trecho de 50 linhas funcionando mas mal estruturado, listando melhorias priorizadas."
+        },
+        {
+          "id": "m5-t7",
+          "order": 30,
+          "title": "System Design Básico e Trade-offs",
+          "summary": "Quebrar um problema aberto em componentes, definir fluxo de dados e justificar escolhas técnicas.",
+          "keyConcepts": ["Requisitos funcionais e não-funcionais", "Gargalos", "Trade-offs (simplicidade vs escala)", "Desenho antes de codar"],
+          "studyItems": [
+            {
+              "id": "m5-t7-i1",
+              "title": "Requisitos Funcionais, Não-Funcionais e Estimativas",
+              "prompt": "Mapear escopo, RPS esperado, proporção leitura/escrita, latência alvo e volume de armazenamento."
+            },
+            {
+              "id": "m5-t7-i2",
+              "title": "Desenho de alto nível e identificação de gargalos",
+              "prompt": "Conectar Cliente, API, Banco, Cache e Fila e localizar pontos únicos de falha e saturação."
+            },
+            {
+              "id": "m5-t7-i3",
+              "title": "Escala Vertical vs. Escala Horizontal",
+              "prompt": "Quando aumentar a máquina resolve e por que escalar horizontalmente com Load Balancer exige app stateless."
+            },
+            {
+              "id": "m5-t7-i4",
+              "title": "Trade-offs essenciais de arquitetura",
+              "prompt": "Monólito modular vs microserviços, SQL vs NoSQL, consistência forte vs eventual (CAP) e síncrono vs assíncrono."
+            },
+            {
+              "id": "m5-t7-i5",
+              "title": "Desenho antes de codar: RFC / Design Doc e ADR",
+              "prompt": "Documentar contexto, alternativas avaliadas, decisão escolhida e consequências antes de implementar."
+            }
+          ],
+          "suggestedPractice": "Escrever um mini-documento técnico (1 página) projetando um encurtador de URLs ou sistema de notificações."
+        }
+      ]
+    }
+  ]
+}
