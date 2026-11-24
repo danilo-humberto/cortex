@@ -15,6 +15,7 @@
     <img src="https://img.shields.io/badge/Google_Gemini-AI_Evaluator-8E75B2?logo=googlegemini&logoColor=white" alt="Google Gemini API" />
     <img src="https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?logo=tailwindcss&logoColor=white" alt="Tailwind CSS v4" />
     <img src="https://img.shields.io/badge/PWA-Ready-4F46E5" alt="PWA Ready" />
+    <a href="./LICENSE"><img src="https://img.shields.io/badge/License-MIT-22C55E" alt="Licença MIT" /></a>
   </p>
 </div>
 
@@ -35,6 +36,8 @@
 - [Referência da API](#referência-da-api)
 - [Deploy na Cloudflare Workers](#deploy-na-cloudflare-workers)
 - [Referências Pedagógicas e Técnicas](#referências-pedagógicas-e-técnicas)
+- [Licença](#licença)
+- [Autor](#autor)
 
 ---
 
@@ -290,6 +293,26 @@ Todas as rotas sob `/api/*` (exceto `health` e `auth/*`) exigem o cookie de sess
 
 ---
 
+## Licença
+
+Este projeto está licenciado sob a **Licença MIT** — veja o arquivo [`LICENSE`](./LICENSE) para mais detalhes.
+
+---
+
+## Autor
+
 <div align="center">
-  <sub>Desenvolvido para estudos consistentes, ativos e sem atalhos mentais.</sub>
+  <a href="https://github.com/danilo-humberto">
+    <img src="https://github.com/danilo-humberto.png?size=96" width="96" height="96" alt="Foto de Danilo Humberto" />
+    <br />
+    <sub><strong>Danilo Humberto</strong></sub>
+  </a>
+  <br />
+  <br />
+  <a href="https://github.com/danilo-humberto">
+    <img src="https://img.shields.io/badge/GitHub-@danilo--humberto-181717?logo=github&logoColor=white" alt="GitHub de Danilo Humberto" />
+  </a>
+  <br />
+  <br />
+  <sub>Desenvolvido com foco em estudos consistentes, ativos e sem atalhos mentais.</sub>
 </div>
